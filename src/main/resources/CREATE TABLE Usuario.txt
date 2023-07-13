@@ -1,0 +1,32 @@
+DROP TABLE "Usuario";
+
+CREATE TABLE "Usuario" (
+	"Login"	TEXT NOT NULL CHECK(length("Login") <= 20),
+	"Password" TEXT NOT NULL CHECK(length("Password") <= 30),
+    "Nombre" TEXT NOT NULL CHECK(length("Nombre") <= 50),
+    "Cliente" INTEGER NOT NULL,
+    "Email" TEXT CHECK(length("Email") <= 50),
+    "FechaAlta" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "FechaBaja" TIMESTAMP,
+    "Status" TEXT NOT NULL DEFAULT 'A' CHECK(length("Status") <= 1),
+    "Intentos" INTEGER NOT NULL DEFAULT 0,
+	"FechaRevocado" TIMESTAMP,
+	"FechaVigencia" TIMESTAMP,
+	"NoAcceso" INTEGER,
+	"ApellidoPaterno" TEXT CHECK(length("ApellidoPaterno") <= 50),
+    "ApellidoMaterno" TEXT CHECK(length("ApellidoMaterno") <= 50),
+	"Area" INTEGER CHECK(length("Area") <= 4),
+    "FechaModificacion" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY("Login")
+);
+
+INSERT INTO "USUARIO" VALUES ("ADMIN","ADMIN", "RIGOBERTO", 999, "WP_RIGO@OUTLOOK.COM", datetime('now','localtime'), NULL, "A", 0, NULL, NULL, 0, "MERCADO", "CHAVEZ", NULL, datetime('now','localtime'));
+INSERT INTO "USUARIO" VALUES ("JOSE","Jose01", "JOSE MIGUEL", 998, "JRIOSN@ADEA.COM", datetime('now','localtime'), NULL, "A", 0, NULL, NULL, 0, "RÍOS", "NOGUERA", NULL, datetime('now','localtime'));
+
+INSERT INTO "USUARIO" VALUES ("VICTOR","VIKTOR", "VICTOR", 1, "VICTOR@CORREO.COM", datetime('now','localtime'), NULL, "B", 0, NULL, NULL, 0, NULL, NULL, NULL, datetime('now','localtime'));
+INSERT INTO "USUARIO" VALUES ("JOSE_LUIS","JOLUIS", "JOSE LUIS", 2, NULL, datetime('now','localtime'), NULL, "B", 0, NULL, NULL, 0, NULL, NULL, NULL, datetime('now','localtime'));
+INSERT INTO "USUARIO" VALUES ("HECTOR","ECTOR!", "HECTOR", 3, "HECTOR@CORREO.COM", datetime('now','localtime'), NULL, "B", 0, NULL, NULL, 0, NULL, NULL, NULL, datetime('now','localtime'));
+
+INSERT INTO "USUARIO" VALUES ("JUAN","JUANITO00!", "JUAN", 3, "HECTOR@CORREO.COM", datetime('now','localtime'), NULL, "R", 0, NULL, NULL, 0, "GONZALEZ", NULL, NULL, datetime('now','localtime'));
+
+SELECT * FROM "Usuario";
